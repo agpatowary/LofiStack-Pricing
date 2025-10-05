@@ -117,7 +117,7 @@ const App: React.FC = () => {
       default:
         return (
             <div className="container mx-auto px-4 flex flex-col lg:flex-row gap-8 py-12">
-              <aside className="lg:w-72 flex-shrink-0">
+              <aside className="lg:w-72 flex-shrink-0 ">
                 <PricingFilter currentFilter={filter} onFilterChange={setFilter} />
               </aside>
               <div className="flex-grow min-w-0">
