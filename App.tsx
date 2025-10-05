@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useCallback, useEffect } from 'react';
 import { AIRecommendation, SurveyAnswers, ViewState, Filter } from './types';
 import { generateRecommendation } from './services/geminiService';
+import { PRICING_DATA } from './constants';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import PricingDisplay from './components/PricingDisplay';
@@ -28,6 +29,7 @@ const App: React.FC = () => {
   useEffect(() => {
     let intervalId: number | undefined;
     if (view === 'loading') {
+      document.title = 'Generating Recommendations... | LofiStack';
       let messageIndex = 0;
       setLoadingMessage(loadingMessages[0]);
       
@@ -35,6 +37,27 @@ const App: React.FC = () => {
         messageIndex = (messageIndex + 1) % loadingMessages.length;
         setLoadingMessage(loadingMessages[messageIndex]);
       }, 2500);
+    } else if (view === 'survey') {
+      document.title = 'AI Advisor Survey | LofiStack';
+    } else if (view === 'results') {
+      document.title = 'Your AI Recommendations | LofiStack';
+    } else { // pricing view
+      if (filter.type === 'all' || !filter.id) {
+          document.title = 'LofiStack Pricing & AI Advisor';
+      } else if (filter.type === 'pillar') {
+          const pillar = PRICING_DATA.find(p => p.id === filter.id);
+          document.title = `${pillar ? pillar.name.replace(/Pillar \d: /,'') : 'Pricing'} | LofiStack`;
+      } else if (filter.type === 'category') {
+          let categoryName = 'Category';
+          for (const pillar of PRICING_DATA) {
+              const category = pillar.categories.find(c => c.id === filter.id);
+              if (category) {
+                  categoryName = category.name;
+                  break;
+              }
+          }
+          document.title = `${categoryName} Pricing | LofiStack`;
+      }
     }
     
     return () => {
@@ -42,7 +65,7 @@ const App: React.FC = () => {
         clearInterval(intervalId);
       }
     };
-  }, [view]);
+  }, [view, filter]);
 
   const handleStartSurvey = useCallback(() => {
     setView('survey');
@@ -92,7 +115,6 @@ const App: React.FC = () => {
         return <AIResults recommendations={recommendations} onShowPricing={handleShowPricing} onRestart={handleStartSurvey} />;
       case 'pricing':
       default:
-        console.log('Rendering pricing view with filter:', filter);
         return (
             <div className="container mx-auto px-4 flex flex-col lg:flex-row gap-8 py-12">
               <aside className="lg:w-72 flex-shrink-0">

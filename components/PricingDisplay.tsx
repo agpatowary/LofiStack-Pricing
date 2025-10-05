@@ -217,7 +217,7 @@ const TierCalculator: React.FC<{ tier: Tier; value: number; onChange: (value: nu
 
   return (
     <div className="mt-6 pt-6 border-t border-slate-700/50">
-      <h5 className="text-base font-semibold text-slate-100 mb-3">Estimate Your Price</h5>
+      <h6 className="text-base font-semibold text-slate-100 mb-3">Estimate Your Price</h6>
       <div className="space-y-4">
         <label htmlFor={`calculator-${tier.name.replace(/\s+/g, '-')}`} className="block text-sm text-slate-300">{label}</label>
         <div className="flex items-center gap-4">
@@ -267,7 +267,7 @@ const PackSelector: React.FC<{ packSelector: PackSelectorType }> = ({ packSelect
   return (
     <div className="mt-6 pt-6 border-t border-slate-700/50">
       <div className="flex justify-between items-center mb-4">
-        <h5 className="text-base font-semibold text-slate-100">Select Your Automation Packs</h5>
+        <h6 className="text-base font-semibold text-slate-100">Select Your Automation Packs</h6>
         <p className="text-sm font-semibold text-slate-300 bg-slate-700 px-3 py-1 rounded-full">
           {selectedPacks.length} / {packSelector.limit} selected
         </p>
@@ -321,7 +321,7 @@ const TierCard: React.FC<{ tier: Tier }> = ({ tier }) => {
         aria-controls={`tier-details-${tier.name.replace(/\s+/g, '-')}`}
       >
         <div className="flex-grow">
-          <h4 className="text-lg sm:text-xl font-bold text-indigo-400">
+          <h5 className="text-lg sm:text-xl font-bold text-indigo-400">
             {tier.tooltip ? (
               <Tooltip text={tier.tooltip}>
                 <span className="border-b-2 border-dotted border-indigo-500/50 cursor-help">{tier.name}</span>
@@ -329,7 +329,7 @@ const TierCard: React.FC<{ tier: Tier }> = ({ tier }) => {
             ) : (
               tier.name
             )}
-          </h4>
+          </h5>
           {tier.price && <p className="text-xl sm:text-2xl font-semibold text-white mt-2">{tier.price}</p>}
         </div>
         <svg
@@ -378,7 +378,7 @@ const TierCard: React.FC<{ tier: Tier }> = ({ tier }) => {
 
               {tier.deliverables && tier.deliverables.length > 0 && (
                 <div className="mt-6 pt-6 border-t border-slate-700/50">
-                  <h5 className="text-base font-semibold text-slate-100 mb-4">Key Deliverables</h5>
+                  <h6 className="text-base font-semibold text-slate-100 mb-4">Key Deliverables</h6>
                   <div className="space-y-4">
                     {tier.deliverables.map((deliverable) => {
                       const Icon = deliverableIcons[deliverable.icon] || CodeIcon;
@@ -425,7 +425,7 @@ const TierCard: React.FC<{ tier: Tier }> = ({ tier }) => {
 
 const InfoBlockCard: React.FC<{ block: InfoBlock }> = ({ block }) => (
   <div className="bg-slate-800/50 rounded-lg p-4 md:p-6 border border-slate-700">
-    <h4 className="text-lg font-bold text-indigo-400">{block.title}</h4>
+    <h5 className="text-lg font-bold text-indigo-400">{block.title}</h5>
     {Array.isArray(block.content) ? (
       <ul className="list-disc list-inside mt-2 text-slate-300 space-y-1">
         {block.content.map((item, index) => <li key={index}>{item}</li>)}
@@ -439,7 +439,7 @@ const InfoBlockCard: React.FC<{ block: InfoBlock }> = ({ block }) => (
 
 const ServiceDisplay: React.FC<{ service: Service }> = ({ service }) => (
   <div className="bg-slate-800 rounded-xl p-4 sm:p-6 md:p-8 border border-slate-700 shadow-lg">
-    <h3 className="text-2xl sm:text-3xl font-bold text-white">
+    <h4 className="text-2xl sm:text-3xl font-bold text-white">
         {service.tooltip ? (
             <Tooltip text={service.tooltip}>
                 <span className="border-b-2 border-dotted border-slate-500 cursor-help">{service.name}</span>
@@ -447,7 +447,7 @@ const ServiceDisplay: React.FC<{ service: Service }> = ({ service }) => (
         ) : (
             service.name
         )}
-    </h3>
+    </h4>
     {service.description && <p className="mt-2 text-slate-300 max-w-3xl text-sm sm:text-base">{service.description}</p>}
     
     {service.tiers && service.tiers.length > 0 && (
@@ -493,7 +493,7 @@ const CategoryDisplay: React.FC<{ category: Category }> = ({ category }) => {
       <div className="mb-6 flex items-center gap-3 sm:gap-4">
         {Icon && <Icon className="w-8 h-8 sm:w-10 sm:h-10 text-indigo-400 flex-shrink-0" aria-hidden="true" />}
         <div className="flex-grow">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">{category.name}</h2>
+          <h3 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">{category.name}</h3>
           {category.description && <p className="mt-2 text-base sm:text-lg text-slate-300 max-w-4xl">{category.description}</p>}
         </div>
       </div>
@@ -508,7 +508,7 @@ const CategoryDisplay: React.FC<{ category: Category }> = ({ category }) => {
 const PillarDisplay: React.FC<{ pillar: Pillar }> = ({ pillar }) => (
   <section id={pillar.id} className="mb-16">
     <div className="mb-12 pb-6 border-b-2 border-slate-700">
-      <h1 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">{pillar.name}</h1>
+      <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">{pillar.name}</h2>
       {pillar.description && <p className="mt-4 text-lg text-slate-300 max-w-5xl">{pillar.description}</p>}
     </div>
     <div className="space-y-12">
