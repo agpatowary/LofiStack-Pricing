@@ -3,7 +3,7 @@ import { GoogleGenAI, Type } from "@google/genai";
 import { SurveyAnswers, AIRecommendation } from '../types';
 import { PRICING_DATA } from '../constants';
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
+const ai = new GoogleGenAI({ apiKey: "AIzaSyDi-vno7IcCZjm5qIAQ6GaVuUYKQNYFic0" });
 
 export const generateRecommendation = async (answers: SurveyAnswers): Promise<AIRecommendation[]> => {
   const prompt = `

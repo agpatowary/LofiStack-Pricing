@@ -92,6 +92,7 @@ const App: React.FC = () => {
         return <AIResults recommendations={recommendations} onShowPricing={handleShowPricing} onRestart={handleStartSurvey} />;
       case 'pricing':
       default:
+        console.log('Rendering pricing view with filter:', filter);
         return (
             <div className="container mx-auto px-4 flex flex-col lg:flex-row gap-8 py-12">
               <aside className="lg:w-72 flex-shrink-0">
